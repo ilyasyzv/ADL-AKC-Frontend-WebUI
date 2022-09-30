@@ -1,0 +1,14 @@
+<mat-card class="example-card">
+    <mat-card-title><a [href]="link" target="_blank">{{Title}}</a></mat-card-title>
+    <mat-card-content class="author_box">
+      <p class="dateFill">{{parseDate(Date)}}</p>
+      <span class="activity__dot">•</span>
+      <ul class="author_name">
+        <li *ngFor="let author of limitAuthors(data.authors); let isLast=last">{{author.full_name}}{{isLast ? countLastAuthors(data.authors) : ', '}}</li>
+      </ul>
+      <!-- <p><span class="titlehead">Revelant Keywords:</span> <button mat-stroked-button color="accent">
+        {{Keywords}}
+    </button></p> -->
+    </mat-card-content>
+  </mat-card>
+<div class="lds-default" *ngIf="dataService.loading"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>

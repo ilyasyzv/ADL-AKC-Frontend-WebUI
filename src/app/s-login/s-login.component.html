@@ -1,0 +1,32 @@
+<div class="s-login">
+    <span class="guest-name">{{ email$ | async }}</span>
+    <button (click)="openModal('doc-modal')" class="s-login__doc">
+        <span class="material-symbols-outlined">info</span>
+        Documentation
+    </button>
+    <button (click)="openModal('logout-modal')" class="s-login__logout">
+        <span class="material-symbols-outlined">logout</span>
+        Log out
+    </button>
+    <s-modal id="logout-modal">
+        <div class="s-modal__logout">
+            <div class="s-modal__close">
+                <button (click)="closeModal('logout-modal');">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <p>Are you sure you want to <span>Log out?</span></p>
+            <div class="s-modal__buttons">
+                <button (click)="closeModal('logout-modal');">Cancel</button>
+                <button (click)="signOut()">Log out</button>
+            </div>
+        </div>
+    </s-modal>
+    <s-modal id="doc-modal">
+        <app-s-documentation></app-s-documentation>
+    </s-modal>
+    <p class="login__powered">
+        Powered by
+        <img src="./../../assets/alcon/powered.svg" alt="powered">
+    </p>
+</div>

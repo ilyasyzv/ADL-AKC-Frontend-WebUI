@@ -1,0 +1,36 @@
+<div class="search-history">
+  <h2 class="search-history__heading">Search history</h2>
+  <!-- <p class="titletext"><app-a-page-title [title]="_appService.pageTitle"></app-a-page-title></p>
+    <h3><b>MY RECENT SEARCHES</b></h3> -->
+    
+    <ul *ngIf="dataservice.historyArray.length" class="route__list">
+      <li class="route" (click)="refresh(item.search_query)" *ngFor="let item of dataservice.historyArray">
+        <!-- <a
+          class="route__item"
+        >
+          
+        <div class="route__text">
+            <span class="route__text--description">
+              {{ item.timestamp | date: 'medium' }}
+            </span>
+        </div>
+          
+        </a> -->
+        <div class="route__text">
+          <span class="material-symbols-outlined">search</span>
+          <p class="route__text--title">
+            {{ item.search_query }}
+          </p>
+        </div>
+      </li>
+    </ul>
+    <ul *ngIf="!dataservice.historyArray.length" class="route__list">
+      <li class="route">
+        <a
+          class="route__item"
+        >
+        You have no recent searches.
+        </a>
+      </li>
+    </ul>
+    </div>

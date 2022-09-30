@@ -1,0 +1,49 @@
+// // Search component Styles
+.s-kol-search {
+    position: relative;
+
+    input {
+        width: 100%;
+        padding: 10px 93px 10px 38px;
+        border: 1px solid #D5D5D5;
+        border-radius: 100px;
+        font-size: 14px;
+    }
+
+    input:focus {
+        outline: -webkit-focus-ring-color auto 0px;
+    }
+
+    .search-icon {
+        position: absolute;
+        top: 50%;
+        left: 12px;
+        transform: translateY(-50%);
+    }
+    
+    .search {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        padding: 7.5px 16.5px;
+        background: var(--primary-blue);
+        color: var(--primary-ft-color);
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 105%;
+        border-radius: 24px;
+    }
+
+    .clear {
+        height: 20px;
+        position: absolute;
+        top: 50%;
+        right: 93px;
+        transform: translateY(-50%);
+        
+        span {
+            color: var(--primary-blue);
+        }
+    }
+}

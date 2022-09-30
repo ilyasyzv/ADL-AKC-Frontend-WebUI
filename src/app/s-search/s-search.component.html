@@ -1,0 +1,15 @@
+<!--Search Component Template-->
+<div class="s-kol-search">
+    <span class="material-symbols-outlined search-icon">
+        search
+    </span>
+    <input type="text" (input)="onInput($event)" (keyup.enter)="refresh()" placeholder="Find expert..." (search)="refresh()" [(ngModel)]="_appService.input" />
+    <button class="search" color="white" background-color="#003535" (click)="refresh()">
+        Search
+    </button>
+    <button class="clear" *ngIf="_appService.input.length > 0" (click)="clear()">
+        <span class="material-symbols-outlined">
+            close
+        </span>
+    </button>
+</div>
