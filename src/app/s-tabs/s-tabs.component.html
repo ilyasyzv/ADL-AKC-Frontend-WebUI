@@ -1,0 +1,22 @@
+<ul class="tabs">
+  <li class="tabs__list">
+    <a matRipple class="tabs__link" [ngClass]="activeBtn === '/dashboard' ? 'activeStatus' : 'inActiveStatus'" (click)="activeRouter('/dashboard')" routerLink="/dashboard">
+      <span class="material-symbols-outlined">format_list_bulleted</span>
+      List view
+    </a>
+  </li>
+
+  <li class="tabs__list">
+    <a matRipple class="tabs__link" [ngClass]="activeBtn === '/relations' ? 'activeStatus' : 'inActiveStatus'" (click)="activeRouter('/relations')" routerLink="/relations">
+      <span class="material-symbols-outlined">share</span>
+      Relations
+    </a>
+  </li>
+
+  <li class="tabs__list">
+    <a matRipple class="tabs__link" [ngClass]="activeBtn === '/affiliations' ? 'activeStatus' : 'inActiveStatus'" routerLink="/affiliations">
+      <span class="material-symbols-outlined">account_balance</span>
+      Affiliation
+    </a>
+  </li>
+</ul>

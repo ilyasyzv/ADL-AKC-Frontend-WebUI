@@ -1,0 +1,47 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" layout flex fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false" color="primary">
+    <div class="sidenav__block">
+      <div class="sidenav__logo">
+        <app-s-alcon-logo></app-s-alcon-logo>
+      </div>
+      <div class="sidenav__item">
+        <nav class="sidenav__nav" layout-fill>
+          <a matRipple class="button" [ngClass]="(activeBtn == '/dashboard' || activeBtn == '/relations' || activeBtn == '/affiliations') ? 'activeStatus' : 'inActiveStatus'" (click)="activeRouter('/dashboard')" routerLink="/dashboard"><span class="material-symbols-outlined">group</span>Experts</a>
+          <a matRipple class="button" [ngClass]="activeBtn == '/recentactivity' ? 'activeStatus' : 'inActiveStatus'" (click)="activeRouter('/recentactivity')" routerLink="/recentactivity"><span class="material-symbols-outlined">description</span>Recent publications</a>
+          <a matRipple class="button" [ngClass]="activeBtn == '/projects' ? 'activeStatus' : 'inActiveStatus'" (click)="activeRouter('/projects')" routerLink="/projects"><span class="material-symbols-outlined">folder_special</span>Projects</a>
+          <a matRipple class="button" [ngClass]="activeBtn == '/recenthistory' ? 'activeStatus' : 'inActiveStatus'" (click)="activeRouter('/recenthistory')" routerLink="/recenthistory"><span class="material-symbols-outlined">history</span>Recent history</a>
+        </nav>
+        <div class="sidenav__log">
+          <app-s-login></app-s-login>
+          
+        </div>
+      </div>
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content class="nav">
+    <!-- <mat-toolbar> -->
+      <section class="nav__block">
+        <button class="sidenav__expand" type="button" (click)="drawer.toggle()">
+          <span class="material-symbols-outlined">chevron_right</span>
+        </button>
+        <!-- <div *ngIf="isHandset$ | async">
+          <span class="example-spacer"></span>
+          <app-s-alcon-logo></app-s-alcon-logo>
+        </div>
+        <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button> -->
+        <!-- <span class="example-spacer"></span> -->
+        <!-- <span>Deep AKC</span> -->
+         <!-- <span class="example-spacer"></span> -->
+        <!-- <span class="title-name"> Smart Autobot for Mining Literature Data</span> -->
+        <!-- <span class="example-spacer"></span> -->
+        <app-s-search></app-s-search>
+        <!-- <span class="example-spacer"></span> -->
+        <app-s-tabs></app-s-tabs>
+        <!-- <span class="example-spacer"></span> -->
+      </section>
+    <!-- </mat-toolbar> -->
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

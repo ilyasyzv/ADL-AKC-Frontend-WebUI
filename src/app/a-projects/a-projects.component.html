@@ -1,0 +1,18 @@
+<div class="s-kol-pagination">    
+    <p class="titletext"><app-a-page-title [title]="_appService.pageTitle"></app-a-page-title></p>
+    
+        <table class="full-width-table">  
+        <tbody>
+            <tr *ngFor="let items of dataSource">
+                <td class="name_td">
+                    <div class="inst_text"> <img class="add_circle" src="../../assets/alcon/awesome-clipboard.png" alt="add circle"> <span class="pt-6">{{items.pro_name}}</span></div>
+                </td>
+                <td>{{items.created_at}}</td>
+            </tr>
+            <tr *ngIf="dataSource.length === 0">
+                You have no projects yet.
+            </tr>
+        </tbody>
+    
+        </table>
+</div>

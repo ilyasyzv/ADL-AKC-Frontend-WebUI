@@ -1,0 +1,74 @@
+<section class="relations">
+  <div class="filter">
+    <h2 class="filter__heading">Expert's collaborations</h2>
+    <!-- <h2 class="filter__heading" *ngIf="_appService.input !== ''">Search result for "{{_appService.input}}" trough collaborations</h2> -->
+      
+    <div class="filter__paginator">
+      <mat-paginator
+        [length]="100"
+        [pageSize]="10"
+        hidePageSize="true"
+        aria-label="Select page">
+      </mat-paginator>
+    </div>
+  </div>
+
+  <section class="relations__block">
+    <mat-drawer-container class="sidenav-container">
+      <div class="relations__cards">
+        <div [class]="opened ? 'relations__card active' : 'relations__card'" (click)="drawer.toggle()">
+          <span class="material-symbols-outlined">person_outline</span>
+          <p>J Bradley <br> Randleman</p>
+          <span *ngIf="!opened" class="relations__label">0 work</span>
+        </div>
+      </div>
+      
+      <mat-drawer class="sidenav" #drawer mode="side" [(opened)]="opened" position="end">
+        <div class="experts__item">
+          <div class="experts__title">
+            <div class="experts__info">
+              <div class="experts__image">
+                <img src="./../../assets/alcon/profile.svg" alt="profile">
+                <button><span class="material-symbols-outlined">folder_special</span></button>
+              </div>
+              <div class="experts__data">
+                <h2>J Bradley Randleman</h2>
+                <ul class="experts__list">            
+                  <li>
+                    <span class="material-symbols-outlined">description</span>
+                    <span class="font-600">0 relevant publications</span>
+                  </li>
+                  <li>
+                    <span class="material-symbols-outlined">description</span>
+                    0 publications
+                  </li>
+                  <li>
+                    <span class="material-symbols-outlined">mic</span>
+                    0 presentations
+                  </li>
+                  <li>
+                    <span class="material-symbols-outlined">groups</span>
+                    0 network size
+                  </li>
+                </ul>
+              </div>
+            </div>
+      
+          </div>
+      
+          <div class="experts__box">
+            <div class="experts__pub">
+              <p>Recent publications:</p>
+                <div class="s-info-containter">
+                    <div class="s-info-sm .mat-body-strong">
+                        <!-- <img class="mat-avatar s-icon-sm" src="../assets/alcon/Icon-document.png" alt="Publications" /> -->
+                        <span class="s-text-ellipsis"> <a href='#' target="_blank">Impact of ablation ratio on 5-year postoperative posterior corneal stability after refractive surgery: SMILE and...</a> </span>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </mat-drawer>
+    </mat-drawer-container>
+  </section>
+</section>

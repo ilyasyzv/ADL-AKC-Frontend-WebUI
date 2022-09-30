@@ -1,0 +1,88 @@
+
+<div class="mat-elevation-z8" class="s-kol-pagination">
+  <!-- <mat-form-field class="s-kol-filter">
+    <input matInput (keyup)="applyFilter($event)" placeholder="Filter" type="search" #kolfilter>
+  </mat-form-field> -->
+  
+  <div class="activity__title">
+    <p class="titletext" *ngIf="_appService.input === ''"><app-a-page-title [title]="_appService.pageTitle"></app-a-page-title></p>
+    <p class="filter__heading" *ngIf="_appService.input !== ''">Showing results for "{{_appService.input}}"</p>
+    <div class="activity__pagination">
+      <button mat-button [matMenuTriggerFor]="menu">
+        <div class="activity__filter">
+          <span class="material-symbols-outlined">sort</span>
+          <p>{{ selectedValue }}</p>
+          <span class="material-symbols-outlined">expand_more</span>
+        </div>
+      </button>
+      <mat-menu class="menu" #menu="matMenu">
+        <p class="menu__text">Sort by</p>
+        <button mat-menu-item (click)="setFilter('Most recent')">
+          <span class="item__text">Most recent</span>
+          <span class="material-symbols-outlined" *ngIf="selectedValue === 'Most recent'">check</span>
+        </button>
+        <button mat-menu-item (click)="setFilter('Most relevant')">
+          <span class="item__text">Most relevant</span>
+          <span class="material-symbols-outlined" *ngIf="selectedValue === 'Most relevant'">check</span>
+        </button>
+      </mat-menu>
+      <mat-paginator #paginator [length]="paginationCount" [pageIndex]="0" [pageSize]="10"  (page)="pageEvent = $event; onPaginateChange($event)" hidePageSize="true">
+      </mat-paginator>
+    </div>
+  </div>
+
+  <table mat-table [dataSource]="dataSource" *ngIf="!dataService.loading" class="full-width-table" matSort aria-label="Elements">
+    <!-- Id Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="s-kol-sort">ID</th>
+      <td mat-cell *matCellDef="let row">
+        <app-s-activity-card [data]="row" [tabValue]="0"></app-s-activity-card>
+      </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="Name" class="s-kol-sort">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="s-kol-sort">Name</th>
+      <td mat-cell *matCellDef="let row"></td>
+    </ng-container>
+
+    <ng-container matColumnDef="Koldetail" class="s-kol-sort">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="s-kol-sort">Koldetail</th>
+      <td mat-cell *matCellDef="let row"></td>
+    </ng-container>
+
+    <ng-container matColumnDef="Title" class="s-kol-sort">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="s-kol-sort">Title</th>
+      <td mat-cell *matCellDef="let row"></td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    <!-- Row shown when there is no matching data. -->
+    <!-- <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="2" *ngIf="dataSource.length">No data matching the filter - {{ kolfilter.value }}</td>
+    </tr> -->
+  </table>     
+  <table class="s-pull-left" *ngIf="dataSource.data.length === 0 && !dataService.loading">
+    <!-- Row shown when there is no matching data. -->
+    <div class="no-results">
+      <h2>No results for "{{_appService.input}}"</h2>
+      <p>Try again.</p>
+    </div>
+  </table> 
+  <s-modal id="maxPublications-modal">
+    <div class="s-modal_maxPublications">
+        <div class="s-modal__close">
+            <button (click)="closeModal('maxPublications-modal');">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        <p>Only top 500 publications are showing in the list. To access all publications use search</p>
+        <div class="s-modal__buttons">
+            <button (click)="closeModal('maxPublications-modal');">Ok</button>
+        </div>
+    </div>
+</s-modal>
+  <div class="lds-default" *ngIf="dataService.loading"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+</div>

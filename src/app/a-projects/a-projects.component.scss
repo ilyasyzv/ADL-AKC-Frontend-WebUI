@@ -1,0 +1,38 @@
+.s-kol-pagination {
+    color: var(--primary-blue);
+    background: var(--primary-white);
+    border-radius: 0.75rem;
+    margin: 0px 1rem 40px 1rem;
+    width: 95%;
+    height: 100%;
+}
+
+.titletext{
+    color: var(--primary-black);
+    padding-left: 16px;
+}
+.full-width-table {
+    width: 100%;
+    padding: 20px 0 20px 20px;
+    border-radius: 0 0 0.75rem 0.75rem;
+    
+}
+.inst_text{
+    color: #232323;
+    font-size: 16px;
+    font-weight: 500;
+    padding-bottom: 5px;
+    display: flex;
+}
+.name_td{
+    width: 25%;
+}
+.add_circle{
+    width: 30px;
+    height: 30px;
+    //cursor: pointer;
+    margin-right: 20px;
+}
+.pt-6{
+    margin-top: 6px;
+}

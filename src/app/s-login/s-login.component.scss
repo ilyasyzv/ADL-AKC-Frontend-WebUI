@@ -1,0 +1,122 @@
+// .mat-icon {
+//     padding-bottom: 10px;
+// }
+
+// div {
+//     margin: auto 1rem;
+//     text-transform: capitalize;
+//     font-size: 1rem;
+//     .guest-name {
+//         font-style: italic;
+//         // color: #00AEEF;
+//     }
+// }
+
+// amplify-sign-out {
+//     --amplify-primary-color: var(--primary-bg-color);
+//     --amplify-primary-tint: var(--primary-bg-color);
+//     --amplify-primary-shade: var(--primary-bg-color);
+// }
+
+.s-login {
+    display: flex;
+    flex-direction: column;
+
+    button {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 12px 20px;
+        transition: all .3s;
+
+        &:hover {
+            background: rgba(35, 35, 35, 0.05);
+        }
+    }
+
+    &__logout {
+        margin-bottom: 58px;
+    }
+
+    span {
+        margin-right: 10px;
+    }
+}
+
+.guest-name {
+    color: #818181;
+    font-size: 12px;
+    line-height: 125%;
+    margin: 22px 0;
+    padding-left: 20px;
+}
+
+.login__powered {
+    padding-left: 24px;
+    font-size: 12px;
+    line-height: 150%;
+    color: #818181;
+    display: flex;
+    align-items: center;
+
+    img {
+        margin-left: 12px;
+    }
+}
+
+.s-modal__logout {
+    height: auto;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--primary-ft-color);
+    width: 400px;
+    padding: 32px;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+
+    p {
+        font-size: 16px;
+        line-height: 180%;
+        color: #000;
+        text-align: center;
+        margin-bottom: 48px;
+
+        span {
+            font-weight: 600;
+        }
+    }
+}
+
+.s-modal__close {
+    transform: translate(12px, -12px);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 28px;
+
+    span {
+        font-size: 24px;
+    }
+}
+
+.s-modal__buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    button {
+        padding: 12px 53.5px;
+        color: var(--primary-blue);
+        font-size: 16px;
+        line-height: 100%;
+        border: 1px solid var(--primary-blue);
+        border-radius: 24px;
+
+        &:last-child {
+            background: var(--primary-blue);
+            color: var(--primary-ft-color);
+        }
+    }
+}

@@ -1,0 +1,128 @@
+.doc {
+    padding: 40px;
+
+    &__block {
+        // background: var(--primary-bg-color);
+        background: #FFFFFF;
+        box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.15);
+        border-radius: 10px;
+    }
+
+    &__heading {
+        padding: 22px;
+        font-size: 16px;
+        line-height: 140%;
+        font-weight: 600;
+        font-family: 'Open Sans', sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 24px;
+    }
+
+    &__tabs {
+        flex-direction: row;
+    }
+
+    &__item {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        margin-bottom: 20px;
+
+        a {
+            font-size: 12px;
+            line-height: 140%;
+            color: var(--primary-blue);
+        }
+
+        p {
+            font-size: 12px;
+            line-height: 140%;
+            color: var(--primary-black);
+        }
+
+        &:first-child {
+            margin-bottom: 31px;
+            h3 {
+                font-size: 12px;
+                line-height: 140%;
+                letter-spacing: 0.02em;
+                text-transform: uppercase;
+                color: var(--primary-black);
+            }
+        }
+
+        h3, p {
+            margin: 0;
+        }
+    }
+
+    &__container {
+        padding-bottom: 22px;
+    }
+
+    &__list {
+        li {
+            font-weight: 700;
+            font-size: 14px;
+            line-height: 140%;
+            color: var(--primary-black);
+            
+            &:first-child {
+                margin-bottom: 16px;
+            }
+        }
+
+        ul {
+            list-style-type: circle;
+            margin-bottom: 16px;
+            li {
+                font-weight: 400;
+                margin: 0;
+            }
+        }
+    }
+}
+
+:host ::ng-deep .mat-tab-labels {
+    flex-direction: column;
+}
+
+:host ::ng-deep .mat-ink-bar {
+    visibility: hidden;
+    display: none;
+}
+
+:host ::ng-deep .mat-tab-label {
+    justify-content: flex-start;
+    font-size: 14px;
+    line-height: 140%;
+    color: var(--primary-black);
+    opacity: 1;
+    height: auto;
+    padding: 12px 44px 12px 20px;
+}
+
+:host ::ng-deep .mat-tab-label-content {
+    font-size: 14px;
+    line-height: 140%;
+    color: var(--primary-black);
+}
+
+:host ::ng-deep .mat-tab-label-active {
+    border-left: 4px solid var(--primary-blue);
+    font-weight: 600;
+}
+
+:host ::ng-deep .mat-tab-body-wrapper {
+    width: 100%;
+    padding: 12px 32px;
+}
+
+:host ::ng-deep .mat-tab-header {
+    border: none;
+}
+
+:host ::ng-deep .mat-tab-nav-bar {
+    border: none;
+}
