@@ -66,12 +66,12 @@
         <div class="menu__block">
           <h3>
             Filtering
-            <button (click)="toggleMenu()"><span class="material-symbols-outlined">close</span></button>
+            <button (click)="toggleMenu(); input = '';this.dataSource.filter = '';paginationCount = itemCount; filterStatus = 'Filtering'"><span class="material-symbols-outlined">close</span></button>
           </h3>
           <div action="#" class="menu__form first">
             <label for="filter">Filter</label>
             <div style="position: relative;">
-              <input (keydown.enter)="setFilter($event)" (input)="applyFilter($event)" [(ngModel)]="input" [ngModelOptions]="{standalone: true}" type="text" placeholder="Filter by name or publication...">
+              <input (keydown.enter)="setFilter($event)" (input)="applyFilter($event); setFilter($event)" [(ngModel)]="input" [ngModelOptions]="{standalone: true}" type="text" placeholder="Filter by name or publication...">
               <button (click)="input = '';this.dataSource.filter = '';paginationCount = itemCount; filterStatus = 'Filtering'" class="menu__clear" *ngIf="input.length > 0">
                 <span class="material-symbols-outlined">close</span>
               </button>

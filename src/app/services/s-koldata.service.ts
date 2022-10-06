@@ -252,4 +252,39 @@ export class SKoldataService {
     var affiliations = this.httpClient.get<any>(this.apiUrl+'/affiliations?search_query='+this._appService.input+'&page='+pageNumber, {headers: apiheaders})
     return affiliations
   }
+  
+  public getAllRelationInit(){
+    
+    const TOKEN_HEADER_KEY = "Authorization";
+    const TOKEN_HEADER_VALUE = "Bearer " + this._appService.tokenId;
+
+    const apiheaders = new HttpHeaders().set(
+      TOKEN_HEADER_KEY,
+      TOKEN_HEADER_VALUE
+    );
+    var pageNumber = 1;
+    var relations = this.httpClient.get<any>(this.apiUrl+'/experts?search_query='+this._appService.input+'&page_size=36', {headers: apiheaders});
+    return relations
+  }
+  public getAllRelationOnSearch(page:any){
+    
+    const TOKEN_HEADER_KEY = "Authorization";
+    const TOKEN_HEADER_VALUE = "Bearer " + this._appService.tokenId;
+
+    const apiheaders = new HttpHeaders().set(
+      TOKEN_HEADER_KEY,
+      TOKEN_HEADER_VALUE
+    );
+    var pageNumber = 1;
+    if(page.previousPageIndex < page.pageIndex){
+      pageNumber = page.pageIndex + pageNumber
+    }else{
+      pageNumber = page.previousPageIndex
+      if(pageNumber <= 0){
+        pageNumber = 1
+      }
+    }
+    var relations = this.httpClient.get<any>(this.apiUrl+'/experts?search_query='+this._appService.input+'&page_size=36', {headers: apiheaders});
+    return relations
+  }
 }
