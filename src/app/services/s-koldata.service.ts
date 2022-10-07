@@ -263,7 +263,7 @@ export class SKoldataService {
       TOKEN_HEADER_VALUE
     );
     var pageNumber = 1;
-    var relations = this.httpClient.get<any>(this.apiUrl+'/experts?search_query='+this._appService.input+'&page_size=36', {headers: apiheaders});
+    var relations = this.httpClient.get<any>(this.apiUrl+'/experts?search_query='+this._appService.input+'&page_size=36&page='+pageNumber, {headers: apiheaders});
     return relations
   }
   public getAllRelationOnSearch(page:any){
@@ -284,7 +284,7 @@ export class SKoldataService {
         pageNumber = 1
       }
     }
-    var relations = this.httpClient.get<any>(this.apiUrl+'/experts?search_query='+this._appService.input+'&page_size=36', {headers: apiheaders});
+    var relations = this.httpClient.get<any>(this.apiUrl+'/experts?search_query='+this._appService.input+'&page_size=36&page='+pageNumber, {headers: apiheaders});
     return relations
   }
 }

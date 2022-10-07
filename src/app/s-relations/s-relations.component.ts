@@ -21,12 +21,6 @@ export class SRelationsComponent implements OnInit {
   ElementData = this.dataService
     .getAllRelationInit()
     .subscribe((data:any)=>{
-    data.experts.forEach((element:any) => {
-      this.dataService.getAllExpertsDetails(element.name).subscribe(experts=>{
-        element.expert_recent = experts[0]
-        element.expert_facets = experts[1]
-      })
-    })
     this.dataSource.data = data.experts;
     this.paginationCount = data.experts_count
     if (this.dataSource && this.paginator) {
@@ -50,16 +44,12 @@ authorDetails: any = [];
   }
 
   onPaginateAuthorChange(evt:any){
+    this.cardName = '';
+    this.opened = false;
     if(evt.pageIndex<14){
       this.dataService.loading = true;
       this.dataService.getAllRelationOnSearch(evt)
         .subscribe((data: any) => {  
-          data.experts.forEach((element:any) => {
-            this.dataService.getAllExpertsDetails(element.name).subscribe(experts=>{
-              element.expert_recent = experts[0]
-              element.expert_facets = experts[1]
-            })
-          })
           this.dataSource.data = data.experts;
           this.paginationCount = data.experts_count
           if (this.dataSource && this.paginator) {
