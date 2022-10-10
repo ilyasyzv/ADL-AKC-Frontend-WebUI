@@ -1,18 +1,112 @@
-<div class="s-kol-pagination">    
-    <p class="titletext"><app-a-page-title [title]="_appService.pageTitle"></app-a-page-title></p>
+<div class="s-kol-pagination"> 
+    <div class="filter">
+        <h2 class="filter__heading">Projects</h2>
+        <!-- <h2 class="filter__heading" *ngIf="_appService.input !== ''">Search result for "{{_appService.input}}" trough collaborations</h2> -->
+          
+        <div class="filter__buttons">
+            <button mat-button [matMenuTriggerFor]="menu" class="filter__button">
+                <span class="filter__item">
+                  <span class="material-symbols-outlined">sort</span>
+                  {{ sortBy }}
+                  <span class="material-symbols-outlined">expand_more</span>
+                </span>
+            </button>
+            <button (click)="openModal('create-project-modal')" class="filter__create">
+                <span class="material-symbols-outlined">add</span>
+                Create project
+            </button>
+        </div>
+        <mat-menu #menu="matMenu">
+            <p class="menu__text">Sort by</p>
+            <button class="filter__btn" mat-menu-item (click)="sortBy = 'Alphabetical'">
+                <span class="item__text">Alphabetical</span>
+                <span class="material-symbols-outlined" *ngIf="sortBy === 'Alphabetical'">check</span>
+            </button>
+            <button class="filter__btn" mat-menu-item (click)="sortBy = 'Recent activity'">
+                <span class="item__text">Recent activity</span>
+                <span class="material-symbols-outlined" *ngIf="sortBy === 'Recent activity'">check</span>
+            </button>
+        </mat-menu>
+    </div>
+
+    <div class="projects__block">
+        <div class="projects__item" *ngFor="let project of dataSource">
+            <span class="material-symbols-outlined">folder</span>
+            <ul>
+                <li>{{project.pro_name}}</li>
+                <li>{{project.experts_quan}} experts</li>
+                <li><span>{{project.updated === true ? 'Updated' : 'Created'}}</span> {{project.created_at}}</li>
+            </ul>
+            <button class="projects__more" mat-button [matMenuTriggerFor]="menu2">
+                <span class="material-symbols-outlined">more_horiz</span>
+            </button>
+            <mat-menu class="menu" #menu2="matMenu">
+                <button class="projects__btn" mat-menu-item>
+                    <span class="material-symbols-outlined">drive_file_rename_outline</span>
+                    <span class="item__text">Rename</span>
+                </button>
+                <button (click)="openModal('delete-project-modal', project.pro_name)" class="projects__btn" mat-menu-item>
+                    <span class="material-symbols-outlined">delete_outline</span>
+                    <span class="item__text">Delete</span>
+                </button>
+            </mat-menu>
+        </div>
+    </div>
+    <!-- <p class="titletext"><app-a-page-title [title]="_appService.pageTitle"></app-a-page-title></p>
     
-        <table class="full-width-table">  
-        <tbody>
-            <tr *ngFor="let items of dataSource">
-                <td class="name_td">
-                    <div class="inst_text"> <img class="add_circle" src="../../assets/alcon/awesome-clipboard.png" alt="add circle"> <span class="pt-6">{{items.pro_name}}</span></div>
-                </td>
-                <td>{{items.created_at}}</td>
-            </tr>
-            <tr *ngIf="dataSource.length === 0">
-                You have no projects yet.
-            </tr>
-        </tbody>
-    
-        </table>
+    <table class="full-width-table">  
+    <tbody>
+        <tr *ngFor="let items of dataSource">
+            <td class="name_td">
+                <div class="inst_text"> <img class="add_circle" src="../../assets/alcon/awesome-clipboard.png" alt="add circle"> <span class="pt-6">{{items.pro_name}}</span></div>
+            </td>
+            <td>{{items.created_at}}</td>
+        </tr>
+        <tr *ngIf="dataSource.length === 0">
+            You have no projects yet.
+        </tr>
+    </tbody>
+
+    </table> -->
+
+    <s-modal id="create-project-modal">
+        <div class="create__modal">
+            <div class="create__title">
+                <h2>Create new project</h2>
+                <button (click)="closeModal('create-project-modal');">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+
+            <div class="create__input">
+                <h3>Project name</h3>
+                <input type="text">
+            </div>
+
+            <div class="create__buttons">
+                <button (click)="closeModal('create-project-modal');">Cancel</button>
+                <button>Create project</button>
+            </div>
+        </div>
+    </s-modal>
+
+    <s-modal id="delete-project-modal">
+        <div class="delete__modal">
+            <div class="delete__close">
+                <button (click)="closeModal('delete-project-modal');">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <p>Are you sure you want to delete <br><span>{{ deleteProjectName }}</span>?</p>
+            <div class="delete__buttons">
+                <button (click)="closeModal('delete-project-modal');">Cancel</button>
+                <button>Delete</button>
+            </div>
+        </div>
+    </s-modal>
+
+    <div class="no-results" *ngIf="dataSource.length === 0">
+        <h2>You don't have projects yet</h2>
+        <p>Create new project.</p>
+    </div>
 </div>

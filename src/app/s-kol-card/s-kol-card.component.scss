@@ -248,9 +248,11 @@ justify-content: space-between;
 margin-bottom: 48px;
 
 button {
-  padding: 10px 12px 8px 12px;
+  padding: 8px;
   background: rgba(0, 53, 149, 0.05);
   border-radius: 4px;
+  min-width: auto;
+  line-height: 0;
 
   span {
     font-size: 28px;
@@ -469,8 +471,8 @@ line-height: 20px;
 top: 184px;
 }
 .vendor__block{
-display: flex;
-flex-wrap: wrap;
+display: grid;
+grid-template-columns: repeat(3, 1fr);
 font-size: 12px;
 padding-right: 40px;
 }
@@ -547,4 +549,179 @@ row-gap: 8px;
 ::ng-deep .highlighted-text{
   background-color: rgb(217, 225, 239);
   padding: 2px 0;
+}
+
+.control {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding-left: 45px;
+  margin-bottom: 5px;
+  padding-top: 3px;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--primary-black);
+}
+  .control input {
+      position: absolute;
+      z-index: -1;
+      opacity: 0;
+  }
+.control_indicator {
+  position: absolute;
+  top: 15px;
+  left: 16px;
+  height: 20px;
+  width: 20px;
+  background: #ffffff;
+  border: 1px solid #818181;
+  border-radius: 3px;
+}
+.control:hover input ~ .control_indicator,
+.control input:focus ~ .control_indicator {
+  background: #ffffff;
+}
+
+.control input:checked ~ .control_indicator {
+  background: #00AEEF;
+  border: none;
+}
+.control:hover input:not([disabled]):checked ~ .control_indicator,
+.control input:checked:focus ~ .control_indicator {
+  background: #00AEEF;
+}
+.control input:disabled ~ .control_indicator {
+  background: #e6e6e6;
+  opacity: 1;
+  pointer-events: none;
+}
+.control_indicator:after {
+  box-sizing: unset;
+  content: '';
+  position: absolute;
+  display: none;
+}
+.control input:checked ~ .control_indicator:after {
+  display: block;
+}
+.control-checkbox .control_indicator:after {
+  left: 8px;
+  top: 4px;
+  width: 3px;
+  height: 8px;
+  border: solid #ffffff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+.control-checkbox input:disabled ~ .control_indicator:after {
+  border-color: #7b7b7b;
+}
+
+::ng-deep .add__menu {
+  width: 272px;
+  position: relative;
+  top: 8px;
+  border: 1px solid rgba(35, 35, 35, 0.05);
+  box-shadow: 0px 15px 50px rgba(35, 35, 35, 0.15);
+  border-radius: 5px;
+}
+
+.menu__text {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 125%;
+  color: #818181;
+  margin: 0;
+  padding: 5px 16px 13px 16px;
+}
+
+.add__button {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  line-height: 140%;
+  color: var(--primary-blue);
+
+  span {
+    color: var(--primary-blue);
+    margin-right: 16px;
+  }
+}
+
+.create__modal {
+  height: auto;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--primary-ft-color);
+  width: 560px;
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+}
+
+.create__title {
+  padding: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+
+  h2 {
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 140%;
+      color: var(--primary-black);
+      margin: 0;
+      font-family: 'Open Sans', sans-serif;
+  }
+
+  span {
+      color: #818181;
+  }
+}
+
+.create__input {
+  padding: 0 22px;
+  margin-bottom: 52px;
+
+  h3 {
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 140%;
+      color: var(--primary-black);
+      margin: 0;
+      font-family: 'Open Sans', sans-serif;
+      margin-bottom: 24px;
+  }
+
+  input {
+      width: 100%;
+      padding: 10px 16px;
+      background: #FFFFFF;
+      border: 2px solid var(--primary-blue);
+      border-radius: 26px;
+  }
+}
+
+.create__buttons {
+  padding: 0 22px 22px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  button {
+      padding: 12px 32px;
+      color: var(--primary-blue);
+      font-size: 16px;
+      line-height: 100%;
+      border: 1px solid var(--primary-blue);
+      border-radius: 24px;
+
+      &:last-child {
+          background: var(--primary-blue);
+          color: var(--primary-ft-color);
+          margin-left: 16px;
+      }
+  }
 }

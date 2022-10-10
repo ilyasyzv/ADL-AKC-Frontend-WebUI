@@ -334,6 +334,7 @@ td.mat-cell:last-of-type {
 }
 
 ::ng-deep .menu2 {
+  width: 240px;
   position: relative;
   top: 8px;
   border: 1px solid rgba(35, 35, 35, 0.05);
@@ -490,7 +491,7 @@ td.mat-cell:last-of-type {
   }
 }
 
-::ng-deep button.mat-menu-item {
+::ng-deep .set__button.mat-menu-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -500,9 +501,9 @@ td.mat-cell:last-of-type {
   background: #E5F5FF;
 }
 
-::ng-deep .mat-menu-content {
-  width: 240px;
-}
+// ::ng-deep .mat-menu-content {
+//   width: 240px;
+// }
 .filterApplied{
   background: var(--primary-blue);
   color: var(--primary-ft-color);

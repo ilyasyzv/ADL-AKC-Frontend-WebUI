@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
+import { ModalService } from '../s-modal';
 import { AppService } from "../services/app.service";
 
 @Component({
@@ -8,14 +9,29 @@ import { AppService } from "../services/app.service";
   styleUrls: ['./a-projects.component.scss']
 })
 export class AProjectsComponent implements OnInit {
+  sortBy: string = 'Recent activity'
+  deleteProjectName: string | undefined = ''
 
   /* dataSource: MatTableDataSource<any[]> = new MatTableDataSource<any[]>([]); */
-  dataSource = [{"id": "1", "pro_name": "Artificial Intelligence", "created_at": "02/21/2022 10.29 AM"},{"id": "1", "pro_name": "My Projects", "created_at": "06/01/2022 10.49 AM"},{"id": "1", "pro_name": "Eye Care", "created_at": "05/11/2022 12.09 AM"},{"id": "1", "pro_name": "Health Details", "created_at": "04/14/2022 10.15 AM"},{"id": "1", "pro_name": "My Experts", "created_at": "01/09/2022 11.12 AM"},{"id": "1", "pro_name": "Projects Author", "created_at": "04/17/2022 04.58 AM"},{"id": "1", "pro_name": "Publications", "created_at": "03/30/2022 09.45 AM"},]
+  dataSource = [
+    {"id": "1", "pro_name": "LA workshop September", "experts_quan": "0", "created_at": "Aug 3, 2022", "updated": false},
+    {"id": "2", "pro_name": "Atlanta conference 2022", "experts_quan": "8", "created_at": "Jul 22, 2022", "updated": true},
+    {"id": "3", "pro_name": "Best KOLs in Glaucoma", "experts_quan": "12", "created_at": "Jan 10, 2022", "updated": true},
+  ]
   @ViewChild(MatPaginator) paginator?: MatPaginator;
   displayedColumns = ["inst_name", "inst_place", "experts_count"];
-  constructor(public readonly _appService: AppService) { }
+  constructor(public readonly _appService: AppService, private modalService: ModalService) { }
 
   ngOnInit(): void {
+  }
+
+  openModal(id: string, name?: string): void {
+    this.modalService.open(id);
+    this.deleteProjectName = name
+  }
+
+  closeModal(id: string): void {
+      this.modalService.close(id);
   }
 
 }

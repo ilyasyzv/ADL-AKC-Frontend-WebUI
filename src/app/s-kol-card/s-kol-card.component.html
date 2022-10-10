@@ -27,7 +27,22 @@
         </div>
       </div>
 
-      <button><span class="material-symbols-outlined">folder_special</span></button>
+      <button  mat-button [matMenuTriggerFor]="menu" matTooltip="Save to project"><span class="material-symbols-outlined">folder_special</span></button>
+      <mat-menu class="add__menu" #menu="matMenu">
+        <div (click)="$event.stopPropagation();">
+          <p class="menu__text">Save to project:</p>
+          <label mat-menu-item class="control control-checkbox" *ngFor="let project of dataSource">
+            {{project.pro_name}}
+            <input (change)="showSuccessToaster(Name, project.pro_name)" type="checkbox" />
+            <div class="control_indicator"></div>
+          </label>
+          <button (click)="openModal('create-project-modal')" class="add__button" mat-menu-item>
+            <span class="material-symbols-outlined">add</span>
+            Create new project
+          </button>
+        </div>
+      </mat-menu>
+
     </div>
 
     <div class="experts__box">
@@ -67,7 +82,7 @@
         <div *ngIf="expertActiveTab==='Vendors'" class="vendor__tab">
           <p *ngIf="data.expert_facets?.vendors?.length!==0">Vendor mentions:</p>
           <div *ngIf="data.expert_facets?.vendors?.length!==0" class="vendor__block">
-            <div [matTooltip]="tile.name" class="vendor__text" [style.width]="calculateWidth(data.expert_facets?.vendors, tile.count)" [style.background]="tile.name === 'Alcon' ? '#003595' : background(data.expert_facets?.vendors, tile.count)" *ngFor="let tile of data.expert_facets?.vendors">
+            <div [matTooltip]="tile.name" class="vendor__text" [style.background]="tile.name === 'Alcon' ? '#003595' : background(data.expert_facets?.vendors, tile.count)" *ngFor="let tile of data.expert_facets?.vendors">
               <p [style.font-size]="tile.name === 'Alcon' ? '14px': '12px'" [style.font-weight]="tile.name === 'Alcon' ? '700': '400'">{{tile.name}}</p>
               <p>{{percentageValue(data.expert_facets?.vendors, tile.count)}}%</p>
             </div>
@@ -101,6 +116,27 @@
       </div>
     </div>
   </div>
+
+  <s-modal id="create-project-modal">
+    <div class="create__modal">
+        <div class="create__title">
+            <h2>Create new project</h2>
+            <button (click)="closeModal('create-project-modal');">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+
+        <div class="create__input">
+            <h3>Project name</h3>
+            <input type="text">
+        </div>
+
+        <div class="create__buttons">
+            <button (click)="closeModal('create-project-modal');">Cancel</button>
+            <button>Create project and save expert</button>
+        </div>
+    </div>
+  </s-modal>
 </section>    
 
 <!-- <mat-grid-list cols="2" rowHeight="9:5.5">

@@ -7,6 +7,10 @@ import { BaseChartDirective} from 'ng2-charts';
 import { ChartConfiguration, ChartData, ChartType,ChartOptions,ChartDataSets,Chart } from "chart.js";
 import { Subject, BehaviorSubject } from "rxjs";
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
+import { ModalService } from "../s-modal";
+import { MatMenuTrigger } from "@angular/material/menu";
+import { ToasterService } from "../s-toaster/s-toaster.service";
+import { Toast } from "../s-toaster/toast.interface";
 @Component({
   selector: "app-s-kol-card",
   templateUrl: "./s-kol-card.component.html",
@@ -14,6 +18,7 @@ import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 })
 export class SKolCardComponent implements OnInit {
   @ViewChild(MatPaginator) paginator?: MatPaginator;
+  @ViewChild(MatMenuTrigger) trigger?: MatMenuTrigger;
   [x: string]: any;
   @Input() data: any = {};
   @Input() tabValue: number = 0;
@@ -97,10 +102,17 @@ export class SKolCardComponent implements OnInit {
   yearsArray = [{year:"2001", pub:0},{year:"2002", pub:0},{year:"2003", pub:0},{year:"2004", pub:0},{year:"2005", pub:0},{year:"2006", pub:0},{year:"2007", pub:0},{year:"2008", pub:0},{year:"2009", pub:0},{year:"2010", pub:0},{year:"2011", pub:0},{year:"2012", pub:0},{year:"2013", pub:0},{year:"2014", pub:0},{year:"2015", pub:0},{year:"2016", pub:0},{year:"2017", pub:0},{year:"2018", pub:0},{year:"2019", pub:0},{year:"2020", pub:0},{year:"2021", pub:0},{year:"2022", pub:0}]
   pageSlice: any[] = this.data.expert_facets?.co_authors.slice(0, 10)
   searchText?: string = ""
+  dataSource = [
+    {"id": "1", "pro_name": "LA workshop September", "experts_quan": "0", "created_at": "Aug 3, 2022", "updated": false},
+    {"id": "2", "pro_name": "Atlanta conference 2022", "experts_quan": "8", "created_at": "Jul 22, 2022", "updated": true},
+    {"id": "3", "pro_name": "Best KOLs in Glaucoma", "experts_quan": "12", "created_at": "Jan 10, 2022", "updated": true},
+  ]
 
   constructor(
     public sanitizer: DomSanitizer,
-    public readonly _appService: AppService
+    public readonly _appService: AppService, 
+    private modalService: ModalService,
+    private toaster: ToasterService
   ) {}
 
   ngOnInit(): void {
@@ -266,4 +278,24 @@ export class SKolCardComponent implements OnInit {
 
     return Math.round(count*100/countSum)
   }
+
+  openModal(id: string, name?: string): void {
+    this.modalService.open(id);
+    this.deleteProjectName = name
+    this.trigger?.closeMenu()
+  }
+
+  closeModal(id: string): void {
+      this.modalService.close(id);
+  }
+
+  showSuccessToaster(expert_name: string | undefined, project_name: string) {
+    this.toaster.show('success', expert_name, project_name);
+  }
+  // showErrorToaster() {
+  //   this.toaster.show('error', 'Check it out!', 'This is a error alert');
+  // }
+  // showWarningToaster() {
+  //   this.toaster.show('warning', 'Check it out!', 'This is a warning alert', 3000);
+  // }
 }

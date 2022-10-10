@@ -26,15 +26,15 @@
       </button>
       <mat-menu class="menu2" #menu1="matMenu">
         <p class="menu__text">Expert details</p>
-        <button mat-menu-item (click)="setDetails('Publications')">
+        <button class="set__button" mat-menu-item (click)="setDetails('Publications')">
           <span class="item__text">Publications</span>
           <span class="material-symbols-outlined" *ngIf="selectedDetails === 'Publications'">check</span>
         </button>
-        <button mat-menu-item (click)="setDetails('Vendors')">
+        <button class="set__button" mat-menu-item (click)="setDetails('Vendors')">
           <span class="item__text">Vendors</span>
           <span class="material-symbols-outlined" *ngIf="selectedDetails === 'Vendors'">check</span>
         </button>
-        <button mat-menu-item (click)="setDetails('Network')">
+        <button class="set__button" mat-menu-item (click)="setDetails('Network')">
           <span class="item__text">Network</span>
           <span class="material-symbols-outlined" *ngIf="selectedDetails === 'Network'">check</span>
         </button>
@@ -170,6 +170,7 @@
         </div>
     </div>
 </s-modal>
+<s-toaster *ngFor="let toast of toasts; let i=index" [toast]="toast" [i]="i" (remove)="remove($event)"></s-toaster>
   <div class="lds-default" *ngIf="dataService.loading"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
 
 </div>

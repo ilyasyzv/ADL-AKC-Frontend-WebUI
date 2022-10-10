@@ -54,6 +54,7 @@ import { HighlighterPipe } from './s-kol-card/highlighter.pipe';
 import { MatSelectModule } from '@angular/material/select';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { SRelationsComponent } from './s-relations/s-relations.component';
+import { ToasterComponent } from './s-toaster/s-toaster.component';
 var oktaAuth;
 
 if(window.location.origin === 'https://deep-akc.dev.apps.alconcloud.com'){
@@ -107,7 +108,8 @@ if(window.location.origin === 'https://deep-akc.dev.apps.alconcloud.com'){
         AMapLocationComponent,
         AProjectsComponent,
         HighlighterPipe,
-        SRelationsComponent
+        SRelationsComponent,
+        ToasterComponent
     ],
     imports: [
         CommonModule,

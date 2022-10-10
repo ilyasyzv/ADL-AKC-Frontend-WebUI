@@ -1,0 +1,10 @@
+<div class="toast__container">
+    <div class="toast toast-{{toast?.type}}"
+        [style.bottom.px]="i!*70">
+        <span *ngIf="toast?.type === 'success'" class="material-icons">check_circle</span>
+        <p>{{toast?.expert_name}} {{toast?.type === 'success' ? 'saved to' : ''}} "{{toast?.project_name}}"</p>
+        <button class="close" (click)="remove.emit(i)">
+            <span class="material-symbols-outlined">close</span>
+        </button>
+    </div>
+</div>

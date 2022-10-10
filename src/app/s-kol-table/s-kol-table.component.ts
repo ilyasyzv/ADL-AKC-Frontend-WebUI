@@ -21,6 +21,8 @@ import { ModalService } from '../s-modal/s-modal.service';
 import { FormControl } from "@angular/forms";
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { ToasterService } from "../s-toaster/s-toaster.service";
+import { Toast } from "../s-toaster/toast.interface";
 
 @Component({
   selector: "app-s-kol-table",
@@ -76,11 +78,13 @@ export class SKolTableComponent implements OnInit, OnChanges, OnDestroy {
   location: any[] = [];
   filterStatus: string = 'Filtering';
   locationStatus: string = ''
+  toasts: Toast[] = [];
 
   constructor(
     public dataService: SKoldataService,
     public readonly _appService: AppService,
-    public modalService: ModalService
+    public modalService: ModalService,
+    private toaster: ToasterService
   ) {
     this._appService.invokeEvent.subscribe(() => {
       this.refreshSearch(); 
@@ -104,6 +108,11 @@ export class SKolTableComponent implements OnInit, OnChanges, OnDestroy {
       map(value => this._filter(value || '')),
     );
 
+    this.toaster.toast$
+      .subscribe(toast => {
+        this.toasts = [toast, ...this.toasts];
+        setTimeout(() => this.toasts.pop(), toast.delay || 3000);
+      });
   }
 
   private _filter(value: string): string[] {
@@ -228,6 +237,11 @@ export class SKolTableComponent implements OnInit, OnChanges, OnDestroy {
 
   setFilter(event: any) {
     this.filterStatus = event.target.value
+  }
+
+  remove(index: number) {
+    this.toasts = this.toasts.filter((v, i) => i !== index);
+    //this.toasts.splice(index, 1);
   }
   
   ngOnChanges() {
